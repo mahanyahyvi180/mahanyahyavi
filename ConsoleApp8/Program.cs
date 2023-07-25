@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ConsoleApp8
 {
     class Program
     {
@@ -12,17 +12,15 @@ namespace ConsoleApp1
         {
             int[,] rectangular = { { 1, 2, 3 }, { 4, 5, 6 } };
 
+            int[][] jagged = {new int[] {1 , 2},
 
-            int[][] jagged = { new int[] { 1, 2 },
+                              new int[] { 3 },
 
-                               new int[] {3},
-
-                               new int[] {4,5,6} };
+                              new int[] {4 , 5 , 6} };
 
             OutputArray(rectangular);
             Console.WriteLine();
             OutputArray(jagged);
-
         }
 
         static void OutputArray(int[,] array)
@@ -40,13 +38,13 @@ namespace ConsoleApp1
 
             }
         }
-        static void outputArray(int[][] array)
+
+        static void OutputArray(int[][] array)
         {
             Console.WriteLine("Values in the jagged array by row are");
 
             foreach (var row in array)
             {
-
                 foreach (var element in row)
                 {
                     Console.Write($"{element}");
@@ -54,7 +52,7 @@ namespace ConsoleApp1
 
                 Console.WriteLine();
             }
+            Console.ReadLine();
         }
     }
-
 }
