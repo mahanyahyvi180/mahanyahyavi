@@ -1,37 +1,71 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ConsoleApp2
 {
     class Program
     {
-
-        static double Average(params double[] numbers)
-        {
-
-            var total = 0.0;
-
-            foreach (var d in numbers)
-            {
-                total += d;
-            }
-
-            return numbers.Length != 0 ? total / numbers.Length : 0.0;
-        }
-
         static void Main(string[] args)
         {
+            var values = new[] { 2, 9, 5, 0, 3, 7, 1, 4, 8, 5 };
 
-            var d1 = 10.0;
-            var d2 = 20.0;
-            var d3 = 30.0;
-            var d4 = 40.0;
+            Console.Write("Original array:");
+            foreach (var element in values)
+            {
+                Console.Write($"{element}");
+            }
 
-            Console.WriteLine($"d1={d1:F1}\nd2={d2:F1}\nd3={d3:F1}\nd4={d4:F1}\n");
-            Console.WriteLine($"Average of d1 and d2 is{Average(d1, d2):F1}");
-            Console.WriteLine($"Average of d1,d2 and d3 is{Average(d1, d2, d3):F1}");
-            Console.WriteLine($"Average of d1,d2,d3 and d4 is{Average(d1, d2, d3, d4):F1}");
+            var filtered = from value in values
+                           where value > 4
+                           select value;
+
+
+            Console.Write("\nArray values greater than 4:");
+            foreach (var element in filtered)
+            {
+                Console.Write($"{element}");
+            }
+
+            var sorted =
+                from value in values
+                orderby value
+                select value;
+
+            Console.Write("\nOriginal array,sorted:");
+            foreach (var element in sorted)
+            {
+                Console.Write($"{element}");
+            }
+
+            var sortFilteredResults =
+                from value in filtered
+                orderby value descending
+                select value;
+
+            Console.Write("\nValues greater than 4,descending order(two queries):");
+
+            foreach (var element in sortFilteredResults)
+            {
+                Console.Write($"{element}");
+            }
+            var sortAndFilter =
+               from value in values
+               where value > 4
+               orderby value descending
+               select value;
+
+            Console.Write("\nValues greater than 4,descending order (one query):");
+
+            foreach (var element in sortAndFilter)
+            {
+                Console.Write($"{element}");
+            }
+
+            Console.WriteLine();
             Console.ReadLine();
-        
 
         }
     }
