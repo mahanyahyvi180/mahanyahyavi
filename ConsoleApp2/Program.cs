@@ -6,35 +6,35 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp2
 {
-    class Program
+    class DeckofCardsTest
     {
         static void Main(string[] args)
         {
+            var myDeckOfCards = new DeckofCardsTest();
 
-            int[] responses = { 1, 2, 5, 4, 3, 5, 2, 1, 3, 3, 1, 4, 3, 3, 3, 2, 3, 3, 2, 14 };
+            myDeckOfCards.Shuffle();
 
-            var frequency = new int[6];
-
-            for (var answer = 0; answer < responses.Length; ++answer)
+            for (var i = 0; i < 52; ++i)
             {
-                try
+                Console.Write($"{myDeckOfCards.DealCard(),-19}");
+
+                if ((i + 1) % 4 == 0)
                 {
-
-                    ++frequency[responses[answer]];
+                    Console.WriteLine();
                 }
-                catch (IndexOutOfRangeException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine($" responses[{answer}]={responses[answer]}\n");
-                }
+                Console.ReadLine();
             }
+        
+        }
 
-            Console.WriteLine($"{"Rating"}{"Frequency",10}");
+        private void Shuffle()
+        {
+            throw new NotImplementedException();
+        }
 
-            for (var rating = 1; rating < frequency.Length; ++rating)
-            {
-                Console.WriteLine($"{rating,6}{frequency[rating],10}");
-            }
+        private object DealCard()
+        {
+            throw new NotImplementedException();
         }
     }
 }
